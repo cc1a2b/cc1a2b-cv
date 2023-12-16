@@ -904,6 +904,14 @@ canvas{
     position: relative;
     transition: .9s;
 }
+.imaggggg{
+    width: 0.5px; 
+    height: 0.5px;
+    display: inline-block; 
+    margin-left: auto;
+    margin-right: auto; 
+    
+}
 .icon-cc1a2b{
     width: 60px; 
     height: 60px;
