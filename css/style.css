@@ -28,20 +28,43 @@
 
 /* hi i'm cc1a2b hi i'm cc1a2b--- 1. Default css starts ---*/
 
-html,body{
+html, body {
     height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-body{
+body {
     font-family: 'Roboto', sans-serif;
-    width: 100%;
-    height: 100%;
     font-size: 15px;
     line-height: 1.7;
-    color: #333333;
     font-weight: 400;
-    scrollbar-color: dark;
+    color: #333333;
+    transition: background-color 0.4s ease, color 0.4s ease; /* Smooth transition */
 }
+
+element.style {
+    color: white;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #333333;
+    font-weight: 600;
+    font-family: 'Montserrat', sans-serif;
+    transition: color 0.4s ease; /* Smooth transition for headings */
+}
+
+p {
+    letter-spacing: 0;
+    line-height: 1.8;
+    transition: color 0.4s ease; /* Smooth transition for paragraphs */
+}
+
 
 :root {
     --primary-color: #ffffff;
@@ -51,22 +74,6 @@ body{
 .dark-theme {
     --primary-color: #111;
     --secondary-color: #f2f2f2;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6{
-    color: #333333;
-    font-weight: 600;
-    font-family: 'Montserrat', sans-serif;
-}
-
-p {
-    letter-spacing: 0;
-    line-height:1.8;
 }
 
 a{
@@ -256,81 +263,97 @@ img {
 
 /* hi i'm cc1a2b hi i'm cc1a2b---------- 4. Nav area css starts -------------*/
 
-.nav-area{
+.nav-area {
     height: 65px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    background: transparent; /* Initial background color */
+    transition: background-color 0.4s ease-out, height 0.4s ease-out, color 0.4s ease-out; /* Smooth transition */
 }
 
-.nav-area.sticky_navigation{
-    background: #fafafa;
-    height: 80px;
+/* Adjust styles when sticky_navigation class is added */
+.nav-area.sticky_navigation {
+    height: 80px; /* Height when sticky */
+    background-color: transparent; /* Background color when sticky (transparent) */
+    -webkit-box-shadow: 0px 3px 4.6px 0.3px rgba(0,0,0,0.25); /* Shadow for sticky */
+    box-shadow: 0px 3px 4.6px 0.3px rgba(0,0,0,0.25); /* Shadow for sticky */
 }
 
-.navbar-nav {
+/* Navbar navigation styling */
+.nav-area .navbar-nav {
     margin-top: 15px;
 }
 
-.sticky_navigation{
-    -webkit-transition: all 0.4s ease-out;
-    -o-transition: all 0.4s ease-out ;
-    transition: all 0.4s ease-out ;
-    -webkit-box-shadow: 0px 3px 4.6px 0.3px rgba(0,0,0,0.25);
-    box-shadow: 0px 3px 4.6px 0.3px rgba(0,0,0,0.25);
-}
-
-.sticky_navigation .main-menu{
+.sticky_navigation .main-menu {
     margin-top: 0;
 }
 
-.sticky_navigation .navbar-brand, .sticky_navigation .navbar-brand span {
-    color: #000000;
+/* Default text color when background is white */
+.navbar-brand,
+.navbar-brand span,
+.navbar-nav li a {
+    color: #000000; /* Black text */
 }
 
-.sticky_navigation .navbar-brand:hover, .sticky_navigation .navbar-brand:focus, .sticky_navigation .navbar-brand span {
-    color: #262626;
+/* Hover and focus states for navbar brand */
+.navbar-brand:hover,
+.navbar-brand:focus,
+.navbar-brand span {
+    color: #ffffff; /* White text on hover/focus */
 }
 
-.sticky_navigation .nav li a {
-    color: #262626;
+/* Active state for navigation links */
+.navbar-nav li.active a {
+    color: #00B0DC; /* Highlight color for active link */
 }
 
-.sticky_navigation .nav li.active a{
-    color: #00B0DC;
-}
-
-.sticky_navigation .nav li.active::after {
-    border-bottom: 1px solid #262626;
+/* Active state underline */
+.navbar-nav li.active::after {
+    border-bottom: 1px solid #000000; /* Black underline when background is white */
     content: "";
     display: block;
     margin: 0 auto;
     width: 50%;
 }
 
-.sticky_navigation .navbar-brand:hover{
-    color: #ffffff;
+/* Adjust color when sticky navigation is applied */
+.sticky_navigation .navbar-brand,
+.sticky_navigation .navbar-brand span,
+.sticky_navigation .navbar-nav li a {
+    color: #ffffff; /* White text when background is black */
 }
 
-.sticky_navigation .logo span {
-    color: #00b0dc;
+/* Hover and focus states for navbar brand when sticky */
+.sticky_navigation .navbar-brand:hover,
+.sticky_navigation .navbar-brand:focus,
+.sticky_navigation .navbar-brand span {
+    color: #000000; /* Black text on hover/focus */
 }
 
-.main-menu{
-    -webkit-transition: all 0.4s ease-out;
-    -o-transition: all 0.4s ease-out;
-    transition: all 0.4s ease-out;
+/* Active state underline when sticky */
+.sticky_navigation .navbar-nav li.active::after {
+    border-bottom: 1px solid #ffffff; /* White underline when background is black */
+}
+
+/* Styling for main menu and navbar */
+.main-menu {
     margin-top: 10px;
 }
 
-.navbar{
-    border:0;
+.navbar {
+    border: 0;
     margin-bottom: 0;
 }
 
-.navbar-brand{
+.navbar-brand {
     padding: 30px 0;
     text-transform: uppercase;
     font-size: 25px;
     display: block;
-    color: #ffffff;
+    color: #ffffff; /* Default color for navbar-brand */
     font-weight: 800;
 }
 
@@ -340,34 +363,35 @@ img {
     letter-spacing: 3px;
 }
 
-.navbar-brand:focus, .navbar-brand:hover {
+.navbar-brand:focus, 
+.navbar-brand:hover {
     text-decoration: none;
-    color: #00B0DC;
+    color: #00B0DC; /* Highlight color on hover/focus */
 }
 
-.navbar-right li{
+.navbar-right li {
     display: inline-block;
     float: none;
 }
 
-.navbar-right li a{
-    color: #ffffff;
+.navbar-right li a {
+    color: #ffffff; /* White text for navbar-right links */
     text-transform: uppercase;
     font-weight: 400;
 }
 
-.navbar-right li.active a{
-    color: #00B0DC;
+.navbar-right li.active a {
+    color: #00B0DC; /* Highlight color for active link */
 }
 
 .nav > li > a:hover,
 .nav > li > a:active,
-.nav > li > a:focus{
+.nav > li > a:focus {
     background: none;
 }
 
-.navbar-toggle .icon-bar{
-    background: #033D75;
+.navbar-toggle .icon-bar {
+    background: #033D75; /* Background color for icon bar */
 }
 
 #icon {
@@ -381,6 +405,7 @@ img {
 }
 
 /* hi i'm cc1a2b hi i'm cc1a2b---------- Nav area css ends -------------*/
+
 
 /* hi i'm cc1a2b hi i'm cc1a2b----------- 5. Banner area css starts--------------*/
 
@@ -1583,13 +1608,20 @@ ul.port-nav-list li a.active {
     background-color: #00B0DC !important;
 }
 
+#static-heading {
+    color: #ffffff; /* Example static color */
+}
+
+.white-text1 {
+    color: #ffffff; /* White color */
+}
 
 /* hi i'm cc1a2b hi i'm cc1a2b------- testimonial area ends --------*/
 
 /* hi i'm cc1a2b hi i'm cc1a2b-------------13. Contact area starts -------------*/
 
 .contact-area{
-    background-color: #ffffff;
+    background-color: #1a1919;
 }
 
 .contact-area .form-control{
